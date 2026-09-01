@@ -39,7 +39,7 @@
   justify-content: start;
 }
 .work-flex .work-box:nth-child(even) {
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
 .work-flex::before,
 .work-flex::after {
@@ -84,6 +84,14 @@
 }
 .work-info > p {
   width: 90%;
+}
+.work-desc {
+  font-size: 13px !important;
+  line-height: 18px !important;
+  color: #c7c7c7 !important;
+  font-weight: 300 !important;
+  margin-top: 8px !important;
+  margin-bottom: 14px !important;
 }
 .work-image {
   display: flex;

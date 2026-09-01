@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
-import Marquee from "react-fast-marquee";
-
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  if (percent >= 100) {
+  const displayPercent = Math.round(percent);
+
+  if (displayPercent >= 100) {
     setTimeout(() => {
       setLoaded(true);
       setTimeout(() => {
@@ -44,28 +44,15 @@ const Loading = ({ percent }: { percent: number }) => {
 
   return (
     <>
-      <div className="loading-header">
-        <a href="/#" className="loader-title" data-cursor="disable">
-          Logo
-        </a>
-        <div className={`loaderGame ${clicked && "loader-out"}`}>
-          <div className="loaderGame-container">
-            <div className="loaderGame-in">
-              {[...Array(27)].map((_, index) => (
-                <div className="loaderGame-line" key={index}></div>
-              ))}
-            </div>
-            <div className="loaderGame-ball"></div>
-          </div>
+      <div className={`loading-screen ${clicked && "loading-out"}`}>
+        {/* Top Section: Name and Role separated by subtle pipe */}
+        <div className="loading-top-header">
+          <span>KOUSHIK DAGGUPATI</span>
+          <span className="loader-pipe">|</span>
+          <span>SOFTWARE ENGINEER</span>
         </div>
-      </div>
-      <div className="loading-screen">
-        <div className="loading-marquee">
-          <Marquee>
-            <span> A Creative Developer</span> <span>A Creative Designer</span>
-            <span> A Creative Developer</span> <span>A Creative Designer</span>
-          </Marquee>
-        </div>
+
+        {/* Middle Section: Loading Button */}
         <div
           className={`loading-wrap ${clicked && "loading-clicked"}`}
           onMouseMove={(e) => handleMouseMove(e)}
@@ -75,7 +62,7 @@ const Loading = ({ percent }: { percent: number }) => {
             <div className="loading-container">
               <div className="loading-content">
                 <div className="loading-content-in">
-                  Loading <span>{percent}%</span>
+                  Loading <span>{displayPercent}%</span>
                 </div>
               </div>
               <div className="loading-box"></div>
@@ -84,6 +71,11 @@ const Loading = ({ percent }: { percent: number }) => {
               <span>Welcome</span>
             </div>
           </div>
+        </div>
+
+        {/* Bottom Section: Tagline */}
+        <div className="loading-bottom-tagline">
+          TURNING IDEAS INTO IMPACT
         </div>
       </div>
     </>
@@ -99,12 +91,12 @@ export const setProgress = (setLoading: (value: number) => void) => {
     if (percent <= 50) {
       let rand = Math.round(Math.random() * 5);
       percent = percent + rand;
-      setLoading(percent);
+      setLoading(Math.round(percent));
     } else {
       clearInterval(interval);
       interval = setInterval(() => {
         percent = percent + Math.round(Math.random());
-        setLoading(percent);
+        setLoading(Math.round(percent));
         if (percent > 91) {
           clearInterval(interval);
         }
@@ -123,9 +115,9 @@ export const setProgress = (setLoading: (value: number) => void) => {
       interval = setInterval(() => {
         if (percent < 100) {
           percent++;
-          setLoading(percent);
+          setLoading(Math.round(percent));
         } else {
-          resolve(percent);
+          resolve(100);
           clearInterval(interval);
         }
       }, 2);
