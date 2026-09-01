@@ -93,7 +93,8 @@ I enjoy building practical software solutions, working with modern technologies,
 
 ## 📸 Portfolio Preview
 
-![Koushik Daggupati Portfolio]("C:\Users\DGS Koushik\Pictures\publicimagesportfolio-preview.png.png")
+![Uploading publicimagesportfolio-preview.png.png…]()
+
 
 ---
 
