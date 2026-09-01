@@ -95,7 +95,6 @@ I enjoy building practical software solutions, working with modern technologies,
 
 ![Koushik Daggupati Portfolio](public/images/portfolio-preview.png)
 
-
 ---
 
 ## 📂 Project Structure
